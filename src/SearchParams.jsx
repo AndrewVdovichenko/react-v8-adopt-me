@@ -17,6 +17,10 @@ const SearchParams = () => {
   const handleBreedChange = (e) => {
     setBreed(e.target.value)
   }
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    requestPets();
+  }
 
   const requestPets = async () => {
     const res = await fetch(`http://pets-v2.dev-apis.com/pets?animal=${animal}&location=${location}&breed=${breed}`)
@@ -31,7 +35,7 @@ const SearchParams = () => {
 
   return (
     <div className="search-params">
-      <form>
+      <form onSubmit={handleFormSubmit}>
         <label htmlFor="location">
           Location
           <input id="location" value={location} placeholder="Location" onChange={(e) => setLocation(e.target.value)} />
